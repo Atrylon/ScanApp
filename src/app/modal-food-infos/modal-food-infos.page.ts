@@ -10,6 +10,7 @@ import { FoodService } from '../food.service';
 })
 export class ModalFoodInfosPage implements OnInit {
   food;
+  ingredients;
   color;
   scannedData: {};
   barcodeScannerOptions: BarcodeScannerOptions;
@@ -28,7 +29,6 @@ export class ModalFoodInfosPage implements OnInit {
     .then(barcodeData => {
       this.scannedData = barcodeData;
       this.getScannedFood(this.scannedData);
-      console.log(this.food);
     })
     .catch(err => {
       console.log("Error", err);
@@ -39,8 +39,9 @@ export class ModalFoodInfosPage implements OnInit {
     this.foodService.getFood(scan["text"]).subscribe(
       data => {
         this.food = data['product'];
+        this.ingredients = this.food.ingredients_text.split(',');
 
-        switch (this.food.nutrition_grades) {
+        switch (this.food.nutrition_grades_tags[0]) {
           case 'a':
               this.color='#00823f';
               break;

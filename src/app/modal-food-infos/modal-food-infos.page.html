@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [color]="color">
+  <ion-toolbar [style.background-color]="color">
     <ion-buttons slot="end">
         <ion-button (click)="closeModal()">Retour</ion-button>
     </ion-buttons>
@@ -7,24 +7,40 @@
 </ion-header>
 
 <ion-content>
-      <ion-card>        
-        <ion-card-content>
-          <ion-img [src]="food.selected_images.front.display.fr"></ion-img>
-          <ion-card-title class="ion-text-center">{{ food.product_name }}</ion-card-title>
-          <ion-text class="row">
-            <b>Ingrédients :</b> {{ food.ingredients_text_fr }}
-          </ion-text>
-        </ion-card-content>
-      </ion-card>
-      
-      <ion-card>
-        <ion-card-content>
-          <div class="row">
-              <b>Réalisateur : </b>
-          </div>
-          <div class="row">
-              <b>Acteurs : </b>
-          </div>
-        </ion-card-content>
-      </ion-card> 
+  <ion-card>        
+    <ion-card-content>
+      <ion-img [src]="food.selected_images.front.display.fr"></ion-img>
+      <ion-card-title class="ion-text-center">{{ food.product_name }}</ion-card-title>
+      <ion-text>
+        SCORE : {{ food.nutrition_grades_tags[0] | uppercase }}
+      </ion-text>
+      <ion-list>
+        <h2>Ingrédients :</h2>
+        <ion-item *ngFor="let ingredient of ingredients">
+             {{ ingredient }}
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <h2>Valeurs nutritionnelles</h2>
+        <ion-item>
+            Proteins: {{ food.nutriments.proteins }} g
+        </ion-item>
+        <ion-item>
+            Salt: {{ food.nutriments.salt }} g
+        </ion-item>
+        <ion-item>
+            Fat: {{ food.nutriments.fat }} g
+        </ion-item>
+        <ion-item>
+            Fat: {{ food.nutriments.carbohydrates }}
+        </ion-item>
+        <ion-item>
+            Energy: {{ food.nutriments.energy }} kcal
+        </ion-item>
+        <ion-item>
+            Sugar: {{ food.nutriments.sugars }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
