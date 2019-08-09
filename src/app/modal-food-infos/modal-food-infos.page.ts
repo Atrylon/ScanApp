@@ -43,19 +43,19 @@ export class ModalFoodInfosPage implements OnInit {
 
         switch (this.food.nutrition_grades_tags[0]) {
           case 'a':
-              this.color='#00823f';
+              this.color='primary';
               break;
           case 'b':
-            this.color='#86bc2b';
+            this.color='secondary';
               break;
           case 'c':
-            this.color='#fecc00';
+            this.color='tertiary';
               break;
           case 'd':
-            this.color='#ef8200';
+            this.color='success';
               break;
           case 'e':
-            this.color='#e73c08';
+            this.color='warning';
               break;
           default:
             break;

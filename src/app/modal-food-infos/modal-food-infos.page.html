@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar [style.background-color]="color">
+  <ion-toolbar [color]="color">
     <ion-buttons slot="end">
         <ion-button (click)="closeModal()">Retour</ion-button>
     </ion-buttons>
@@ -14,31 +14,31 @@
       <ion-text>
         SCORE : {{ food.nutrition_grades_tags[0] | uppercase }}
       </ion-text>
-      <ion-list>
+      <ion-list *ngIf="ingredients">
         <h2>Ingrédients :</h2>
         <ion-item *ngFor="let ingredient of ingredients">
              {{ ingredient }}
         </ion-item>
       </ion-list>
-      <ion-list>
+      <ion-list *ngIf="food.nutriments">
         <h2>Valeurs nutritionnelles</h2>
-        <ion-item>
-            Proteins: {{ food.nutriments.proteins }} g
+        <ion-item *ngIf="food.nutriments.proteins">
+            Proteins: {{ food.nutriments.proteins }} {{ food.nutriments.proteins_unit }}
         </ion-item>
-        <ion-item>
-            Salt: {{ food.nutriments.salt }} g
+        <ion-item *ngIf="food.nutriments.salt">
+            Salt: {{ food.nutriments.salt }} {{ food.nutriments.salt_unit }}
         </ion-item>
-        <ion-item>
-            Fat: {{ food.nutriments.fat }} g
+        <ion-item *ngIf="food.nutriments.fat">
+            Fat: {{ food.nutriments.fat }} {{ food.nutriments.fat_unit }}
         </ion-item>
-        <ion-item>
-            Fat: {{ food.nutriments.carbohydrates }}
+        <ion-item *ngIf="food.nutriments.carbohydrates">
+            Carbohydrates : {{ food.nutriments.carbohydrates }} {{ food.nutriments.carbohydrates_unit }}
         </ion-item>
-        <ion-item>
-            Energy: {{ food.nutriments.energy }} kcal
+        <ion-item *ngIf="food.nutriments.energy">
+            Energy: {{ food.nutriments.energy }} {{ food.nutriments.energy_unit }}
         </ion-item>
-        <ion-item>
-            Sugar: {{ food.nutriments.sugars }}
+        <ion-item *ngIf="food.nutriments.sugars">
+            Sugar: {{ food.nutriments.sugars }} {{ food.nutriments.sugars_unit }}
         </ion-item>
       </ion-list>
     </ion-card-content>
