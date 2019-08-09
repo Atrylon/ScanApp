@@ -1,16 +1,30 @@
 <ion-header>
-  <ion-toolbar color="color">
-    <ion-text>
-      <h1> {{ food.product_name }}</h1>
-    </ion-text>
+  <ion-toolbar [color]="color">
     <ion-buttons slot="end">
         <ion-button (click)="closeModal()">Retour</ion-button>
     </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content>
-  
-    <h1> {{ food.product_name }}</h1>
-
+      <ion-card>        
+        <ion-card-content>
+          <ion-img [src]="food.selected_images.front.display.fr"></ion-img>
+          <ion-card-title class="ion-text-center">{{ food.product_name }}</ion-card-title>
+          <ion-text class="row">
+            <b>Ingrédients :</b> {{ food.ingredients_text_fr }}
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+        <ion-card-content>
+          <div class="row">
+              <b>Réalisateur : </b>
+          </div>
+          <div class="row">
+              <b>Acteurs : </b>
+          </div>
+        </ion-card-content>
+      </ion-card> 
 </ion-content>

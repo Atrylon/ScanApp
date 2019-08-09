@@ -11,11 +11,11 @@ export class Tab1Page {
   constructor(private barcodeScanner:BarcodeScanner) {}
 
   ngOnInt(){
-    this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-     }).catch(err => {
-         console.log('Error', err);
-     });
+    // this.barcodeScanner.scan().then(barcodeData => {
+    //   console.log('Barcode data', barcodeData);
+    //  }).catch(err => {
+    //      console.log('Error', err);
+    //  });
   }
 
 }

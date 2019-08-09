@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FoodService {
-  BASE_URL = "https://public.opendatasoft.com/api/records/1.0/search/?dataset=open-food-facts-products&lang=fr&refine.code=";
+  BASE_URL = "https://world.openfoodfacts.org/api/v0/product/";
 
   constructor(private http:HttpClient) { }
 

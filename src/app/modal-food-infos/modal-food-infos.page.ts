@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
+import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FoodService } from '../food.service';
 
 @Component({
   selector: 'app-modal-food-infos',
@@ -9,15 +11,56 @@ import { ModalController, NavParams } from '@ionic/angular';
 export class ModalFoodInfosPage implements OnInit {
   food;
   color;
-
-  constructor(private modalCtrl:ModalController,
-    private navParams:NavParams) { }
-
+  scannedData: {};
+  barcodeScannerOptions: BarcodeScannerOptions;
+ 
+  constructor(private barcodeScanner: BarcodeScanner, private foodService:FoodService,
+    private modalCtrl:ModalController) {
+    this.barcodeScannerOptions = {
+      showTorchButton: true,
+      showFlipCameraButton: true
+    };
+  }
+ 
   ngOnInit() {
-    this.food=this.navParams.get('food');
-    this.color=this.navParams.get('color');
-    
-    // console.log(this.food, this.color);
+    this.barcodeScanner
+    .scan()
+    .then(barcodeData => {
+      this.scannedData = barcodeData;
+      this.getScannedFood(this.scannedData);
+      console.log(this.food);
+    })
+    .catch(err => {
+      console.log("Error", err);
+    });
+  }
+
+  getScannedFood(scan){
+    this.foodService.getFood(scan["text"]).subscribe(
+      data => {
+        this.food = data['product'];
+
+        switch (this.food.nutrition_grades) {
+          case 'a':
+              this.color='#00823f';
+              break;
+          case 'b':
+            this.color='#86bc2b';
+              break;
+          case 'c':
+            this.color='#fecc00';
+              break;
+          case 'd':
+            this.color='#ef8200';
+              break;
+          case 'e':
+            this.color='#e73c08';
+              break;
+          default:
+            break;
+        }
+      }
+    )
   }
 
   closeModal() {
