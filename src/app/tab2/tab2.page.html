@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Ionic 4 QR/ Barcode Scanner
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content></ion-content>
+ 
+<ion-content ion-padding>
+  <h1>Click Button To Scan</h1>
+ 
+  <ion-button (click)="scanCode()">
+    Scan Code
+  </ion-button>
+ 
+  <div *ngIf="scannedData">
+    <h1> {{ food.product_name }}</h1>
+    <p>
+      {{ food.main_category_fr }}
+      <br />
+      <span class="ion-text-uppercase">
+        {{ food.nutrition_grade_fr }}
+      </span>
+    </p>
+  </div>
+ 
+</ion-content>
